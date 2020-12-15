@@ -4,8 +4,15 @@
     </head>
     <body>
         <a-scene>
+            <a-assets>
+                <img id="sand-texture" src="assets/sand.jpg">
+            </a-assets>
+
             <a-sky color="blue" repeat="5 5 "></a-sky>
-            <a-plane color="grey" repeat="60 60" normal-repeat="60 60" rotation="-90 0 0" scale="100 100 1"></a-plane>
+            <a-plane src="#sand-texture" repeat="60 60" 
+                normal-map="#sand-texture" normal-repeat="60 60" 
+                rotation="-90 0 0" 
+                scale="100 100 1"></a-plane>
 
             
             <!-- Rechte Seite -->
