@@ -1,106 +1,161 @@
 <html>
     <head>
         <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+        <script src="components/openDoor.js"></script>
     </head>
     <body>
         <a-scene>
+
             <a-assets>
+                <!-- textures -->
                 <img id="sand-texture" src="assets/sand.jpg">
                 <img id="grasslightbig" src="https://aframe.io/sample-assets/assets/images/terrain/grasslight-big.jpg">
                 <img id="brick" src="assets/brick.jpg">
                 <img id="sky" src="assets/sky.jpg">
                 <img id="wood" src="assets/wood.jpg">
+
+                <!--sounds-->
+                <audio id="open" preload="auto" src="assets/open-door.mp3"></audio>
+                <audio id="close" preload="auto" src="assets/close-door.mp3"></audio>
+
+                <!-- 3d objects -->
+                <a-asset-item id="tree" src="assets/tree.glb"></a-asset-item>
             </a-assets>
 
             <a-sky src="#sky" repeat="5 5 "
                 normal-map="#sky" normal-repeat="5 5"></a-sky>
             <a-plane src="#grasslightbig" repeat="60 60"
                 normal-map="#grasslightbig" normal-repeat="60 60" 
-                rotation="-90 0 0" 
-                scale="100 100 1"></a-plane>
+                rotation="-90 0 0"
+                scale="100 100 1" shadow="receive: true"></a-plane>
 
+            <!--house-->
             
-            <a-box src="#wood" position="10 0 0"></a-box>
-            <a-box src="#wood" position="10 0 1"></a-box>
-            <a-box src="#wood" position="11 1 0"></a-box>
-            <a-box src="#wood" position="11 1 1"></a-box>
-            <a-box src="#wood" position="12 2 0"></a-box>
-            <a-box src="#wood" position="12 2 1"></a-box>
-            <a-box src="#wood" position="13 3 0"></a-box>
-            <a-box src="#wood" position="13 3 -1"></a-box>
-            <a-box src="#wood" position="12 3 -1"></a-box>
+            <!--door-->
+            <a-box open-door position="0 0 -2.3" src="#wood" scale="1 3 1" depth="0.4" id="door"></a-box>
+            <!--<a-box position="0.3 0 -2.3" src="#wood" scale="1 3 1" depth="0.4" rotation="0 90 0"></a-box>-->
 
+            <!--front-->
+            <a-box position="0 2 -2" src="#brick"></a-box>
+            <a-box position="1 2 -2" src="#brick"></a-box>
+
+            <!--left-->
+            <a-box position="-1 0 -2" src="#brick"></a-box>
+            <a-box position="-1 1 -2" src="#brick"></a-box>
+            <a-box position="-1 2 -2" src="#brick"></a-box>
+
+            <a-box position="-2 0 -2" src="#brick"></a-box>
+            <a-box position="-2 1 -2" src="#brick"></a-box>
+            <a-box position="-2 2 -2" src="#brick"></a-box>
+
+            <a-box position="-2 0 -1" src="#brick"></a-box>
+            <a-box position="-2 1 -1" src="#brick"></a-box>
+            <a-box position="-2 2 -1" src="#brick"></a-box>
+
+            <a-box position="-2 0 0" src="#brick"></a-box>
+            <a-box position="-2 1 0" src="#brick"></a-box>
+            <a-box position="-2 2 0" src="#brick"></a-box>
+
+            <a-box position="-2 0 1" src="#brick"></a-box>
+            <a-box position="-2 1 1" src="#brick"></a-box>
+            <a-box position="-2 2 1" src="#brick"></a-box>
+
+            <a-box position="-2 0 2" src="#brick"></a-box>
+            <a-box position="-2 1 2" src="#brick"></a-box>
+            <a-box position="-2 2 2" src="#brick"></a-box>
+
+
+            <!--right-->
+            <a-box position="1 0 -2" src="#brick"></a-box>
+            <a-box position="1 1 -2" src="#brick"></a-box>
+            <a-box position="1 2 -2" src="#brick"></a-box>
+
+            <a-box position="2 0 -2" src="#brick"></a-box>
+            <a-box position="2 1 -2" src="#brick"></a-box>
+            <a-box position="2 2 -2" src="#brick"></a-box>
+
+            <a-box position="2 0 -1" src="#brick"></a-box>
+            <a-box position="2 1 -1" src="#brick"></a-box>
+            <a-box position="2 2 -1" src="#brick"></a-box>
+
+            <a-box position="2 0 0" src="#brick"></a-box>
+            <a-box position="2 1 0" src="#brick"></a-box>
+            <a-box position="2 2 0" src="#brick"></a-box>
+
+            <a-box position="2 0 1" src="#brick"></a-box>
+            <a-box position="2 1 1" src="#brick"></a-box>
+            <a-box position="2 2 1" src="#brick"></a-box>
+
+            <a-box position="2 0 2" src="#brick"></a-box>
+            <a-box position="2 1 2" src="#brick"></a-box>
+            <a-box position="2 2 2" src="#brick"></a-box>
+
+
+            <!--back-->
+            <a-box position="1 0 2" src="#brick"></a-box>
+            <a-box position="1 1 2" src="#brick"></a-box>
+            <a-box position="1 2 2" src="#brick"></a-box>
+
+            <a-box position="0 0 2" src="#brick"></a-box>
+            <!--<a-box position="0 1 2" src=""></a-box>-->
+            <!--tree behind window-->
+            <a-gltf-model shadow="cast: true" position="0 0 5" src="#tree" scale="0.01 0.01 0.01"
+            animation="
+                property: rotation;
+                from: 0 0 0;
+                to: 0 360 0;
+                easing: linear;
+                dur: 5000;
+                loop: true;" ></a-gltf-model>
+
+            <a-box position="0 2 2" src="#brick"></a-box>
+
+            <a-box position="-1 0 2" src="#brick"></a-box>
+            <a-box position="-1 1 2" src="#brick"></a-box>
+            <a-box position="-1 2 2" src="#brick"></a-box>
+
+            <!--up-->
+            <a-box position="0 5 -2" src="#brick"></a-box>
+            <a-box position="0 4 -2" src="#brick"></a-box>
+            <a-box position="0 3 -2" src="#brick"></a-box>
+            <a-box position="0 5 -1" src="#brick"></a-box>
+            <a-box position="0 5 0" src="#brick"></a-box>
+            <a-box position="0 5 1" src="#brick"></a-box>
+            <a-box position="0 5 2" src="#brick"></a-box>
+            <a-box position="0 4 2" src="#brick"></a-box>
+            <a-box position="0 3 2" src="#brick"></a-box>
+
+            <a-box position="1 4 -2" src="#brick"></a-box>
+            <a-box position="1 3 -2" src="#brick"></a-box>
+            <a-box position="1 4 -1" src="#brick"></a-box>
+            <a-box position="1 4 0" src="#brick"></a-box>
+            <a-box position="1 4 1" src="#brick"></a-box>
+            <a-box position="1 4 2" src="#brick"></a-box>
+            <a-box position="1 3 2" src="#brick"></a-box>
+
+            <a-box position="2 3 -2" src="#brick"></a-box>
+            <a-box position="2 3 -1" src="#brick"></a-box>
+            <a-box position="2 3 0" src="#brick"></a-box>
+            <a-box position="2 3 1" src="#brick"></a-box>
+            <a-box position="2 3 2" src="#brick"></a-box>
+
+            <a-box position="-1 4 -2" src="#brick"></a-box>
+            <a-box position="-1 3 -2" src="#brick"></a-box>
+            <a-box position="-1 4 -1" src="#brick"></a-box>
+            <a-box position="-1 4 0" src="#brick"></a-box>
+            <a-box position="-1 4 1" src="#brick"></a-box>
+            <a-box position="-1 4 2" src="#brick"></a-box>
+            <a-box position="-1 3 2" src="#brick"></a-box>
+
+            <a-box position="-2 3 -2" src="#brick"></a-box>
+            <a-box position="-2 3 -1" src="#brick"></a-box>
+            <a-box position="-2 3 0" src="#brick"></a-box>
+            <a-box position="-2 3 1" src="#brick"></a-box>
+            <a-box position="-2 3 2" src="#brick"></a-box>
+            
             
 
-
-            <!-- Right side -->
-            <a-box src="#brick" position="5 0 3"></a-box>
-            <a-box src="#brick" position="5 1 3"></a-box>
-            <a-box src="#brick" position="5 2 3"></a-box>
-            <a-box src="#brick" position="6 0 3"></a-box>
-            <a-box src="#brick" position="6 1 3"></a-box>
-            <a-box src="#brick" position="6 2 3"></a-box>
-            <a-box src="#brick" position="7 0 3"></a-box>
-            <a-box src="#brick" position="7 1 3"></a-box>
-            <a-box src="#brick" position="7 2 3"></a-box>
-            <a-box src="#brick" position="8 0 3"></a-box>
-            <a-box src="#brick" position="8 1 3"></a-box>
-            <a-box src="#brick" position="8 2 3"></a-box>
-            <a-box src="#brick" position="9 0 3"></a-box>
-            <a-box src="#brick" position="9 1 3"></a-box>
-            <a-box src="#brick" position="9 2 3"></a-box>
-            <a-box src="#brick" position="10 0 3"></a-box>
-            <a-box src="#brick" position="10 1 3"></a-box>
-            <a-box src="#brick" position="10 2 3"></a-box>
-            <a-box src="#brick" position="11 0 3"></a-box>
-            <a-box src="#brick" position="11 1 3"></a-box>
-            <a-box src="#brick" position="11 2 3"></a-box>
-            <a-box src="#brick" position="12 0 3"></a-box>
-            <a-box src="#brick" position="12 1 3"></a-box>
-            <a-box src="#brick" position="12 2 3"></a-box>
-            
-
-            <!-- Rechte Seite -->
-            <!--<a-box color="black" position="2 1 -5"></a-box>
-            <a-box color="black" position="2 2 -5"></a-box>
-            <a-box color="black" position="2 3 -5"></a-box>
-
-            <a-box color="black" position="2 1 -6"></a-box>
-            <a-box color="black" position="2 2 -6"></a-box>
-            <a-box color="black" position="2 3 -6"></a-box>
-
-            <a-box color="black" position="2 1 -7"></a-box>
-            <a-box color="black" position="2 2 -7"></a-box>
-            <a-box color="black" position="2 3 -7"></a-box>-->
-
-
-            <!-- Linke Seite -->
-            <!--<a-box color="black" position="0 1 -5"></a-box>
-            <a-box color="black" position="0 2 -5"></a-box>
-            <a-box color="black" position="0 3 -5"></a-box>
-
-            <a-box color="black" position="0 1 -6"></a-box>
-            <a-box color="black" position="0 2 -6"></a-box>
-            <a-box color="black" position="0 3 -6"></a-box>
-
-            <a-box color="black" position="0 1 -7"></a-box>
-            <a-box color="black" position="0 2 -7"></a-box>
-            <a-box color="black" position="0 3 -7"></a-box>-->
-        
-            <!-- Hinten Mitte -->
-            <!--<a-box color="black" position="1 1 -7"></a-box>
-            <a-box color="black" position="1 2 -7"></a-box>
-            <a-box color="black" position="1 3 -7"></a-box>-->
-
-            <!-- Vorne Mitte -->
-            <!--<a-box color="brown" position="1 1 -5"></a-box>
-            <a-box color="brown" position="1 2 -5"></a-box>
-            <a-box color="black" position="1 3 -5"></a-box>-->
-
-            <!-- Oben Mitte -->
-            <!--<a-box color="black" position="1 3 -6"></a-box>-->
-
-            <a-camera id="cursor">
+            <a-camera position="0 1 0">
                 <a-cursor></a-cursor>
             </a-camera>
         </a-scene>
